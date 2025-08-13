@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coming Soon - Event Management</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at center, #141e30, #243b55);
+        font-family: 'Segoe UI', sans-serif;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 900px;
+    }
+
+    .line1 {
+        font-size: 1.8rem;  /* Bigger than before */
+        color: #f5f5f5;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .line2 {
+        font-size: 2.5rem; /* Bigger than before */
+        font-weight: bold;
+        background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
+        background-size: 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 4s infinite linear, glowPulse 2s infinite alternate;
+    }
+
+    .line2 a {
+        text-decoration: none;
+        color: inherit;
+        font-weight: bold;
+    }
+
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes glowPulse {
+        0% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
+        100% { text-shadow: 0 0 20px rgba(255,255,255,0.6); }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="line1">
+            We host offline events, so our developers are busy bringing us online.
+        </div>
+        <div class="line2">
+            🚀 Stay tuned!!! Meanwhile shower love on Insta - 
+            <a href="https://instagram.com/yourprofile" target="_blank">@YourInsta</a>
+        </div>
+    </div>
+</body>
+</html>
