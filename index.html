@@ -1,79 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon - Event Management</title>
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1198/1198977.png">
-
-<style>
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: radial-gradient(circle at center, #141e30, #243b55);
-        font-family: 'Segoe UI', sans-serif;
-        color: white;
-        text-align: center;
-        padding: 20px;
-    }
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        max-width: 900px;
-    }
-
-    .line1 {
-        font-size: 1.8rem;
-        color: #f5f5f5;
-        line-height: 1.6;
-        margin-bottom: 25px;
-    }
-
-    .line2 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        background: linear-gradient(90deg, #ff0080, #ff8c00, #40e0d0);
-        background-size: 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradientShift 4s infinite linear, glowPulse 2s infinite alternate;
-    }
-
-    .line2 a {
-        text-decoration: none;
-        color: inherit;
-        font-weight: bold;
-    }
-
-    @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    @keyframes glowPulse {
-        0% { text-shadow: 0 0 10px rgba(255,255,255,0.3); }
-        100% { text-shadow: 0 0 20px rgba(255,255,255,0.6); }
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - EventKarado</title>
+    <meta name="description" content="We're crafting an amazing experience for you. Our event management website will be launching soon!">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1198/1198977.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Instagram icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            font-family: 'Poppins', sans-serif;
+            color: var(--light);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Particle background */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Glowing orb effect */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.4) 0%, rgba(108, 92, 231, 0) 70%);
+            filter: blur(20px);
+            animation: pulse 8s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        .glow:nth-child(1) {
+            top: -150px;
+            left: -150px;
+            background: radial-gradient(circle, rgba(253, 121, 168, 0.3) 0%, rgba(253, 121, 168, 0) 70%);
+        }
+        
+        .glow:nth-child(2) {
+            bottom: -100px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(162, 155, 254, 0.3) 0%, rgba(162, 155, 254, 0) 70%);
+            animation-delay: 2s;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            padding: 3rem;
+            background: rgba(26, 26, 46, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent), var(--secondary));
+            z-index: -1;
+            border-radius: 22px;
+            animation: borderGlow 6s linear infinite;
+            background-size: 400%;
+            opacity: 0.7;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                background-position: 0% 50%;
+                filter: blur(5px);
+            }
+            50% {
+                background-position: 100% 50%;
+                filter: blur(7px);
+            }
+            100% {
+                background-position: 0% 50%;
+                filter: blur(5px);
+            }
+        }
+        
+        .logo {
+            margin-bottom: 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 10px rgba(253, 121, 168, 0.6);
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
+            transform: scaleX(0.8);
+        }
+        
+        .message {
+            margin-bottom: 2.5rem;
+        }
+        
+        .line1 {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+        
+        .line2 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, var(--accent), var(--secondary), var(--primary));
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: gradientShift 5s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -5px rgba(64, 93, 230, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(64, 93, 230, 0.6);
+        }
+        
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .social-link:hover::before {
+            left: 100%;
+        }
+        
+        .social-link i {
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+            
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .line1 {
+                font-size: 1.4rem;
+            }
+            
+            .line2 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .line1 {
+                font-size: 1.2rem;
+            }
+            
+            .line2 {
+                font-size: 1.4rem;
+            }
+            
+            .social-link {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Background elements -->
+    <div class="particles" id="particles"></div>
+    <div class="glow"></div>
+    <div class="glow"></div>
+    
     <div class="container">
-        <div class="line1">
-            We host offline events, so our developers are busy bringing us online.
+        <div class="logo">EventKarado</div>
+        
+        <div class="message">
+            <div class="line1">
+                We host offline events, so our developers are busy bringing us online.
+            </div>
+            <div class="line2">
+                🚀 Stay tuned for something spectacular!
+            </div>
         </div>
-        <div class="line2">
-            🚀 Stay tuned!!! Meanwhile shower love on Insta - 
-            <a href="https://www.instagram.com/eventkarado?igsh=NWh1eWM4cTc1bThk" target="_blank">@eventkarado</a>
-        </div>
+        
+        <a href="https://www.instagram.com/eventkarado?igsh=NWh1eWM4cTc1bThk" class="social-link" target="_blank">
+            <i class="fab fa-instagram"></i>
+            Follow us @eventkarado
+        </a>
     </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 1;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize
+        window.addEventListener('load', () => {
+            createParticles();
+        });
+    </script>
 </body>
 </html>
